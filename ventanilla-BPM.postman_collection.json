@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "1e9db7e3-6894-4c55-8086-69532c6c73b4",
+		"name": "ventanilla-BPM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "busca tareas por Id instancia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/tareasInstancia/228",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"tareasInstancia",
+						"228"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crea instancia BPM",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"input\": [\r\n        {\r\n            \"name\": \"idCliente\",\r\n            \"data\": \"87324234\"\r\n        },\r\n        {\r\n            \"name\": \"esVentanilla\",\r\n            \"data\": true\r\n        },\r\n        {\r\n            \"name\": \"ramo\",\r\n            \"data\": \"VIDA\"\r\n        },\r\n        {\r\n            \"name\": \"solicitud\",\r\n            \"data\": {\r\n                \"poliza\": {\r\n                    \"numeroPoliza\": \"0000001\",\r\n                    \"numeroCertificado\": \"000002\",\r\n                    \"producto\": \"\",\r\n                    \"subproducto\": \"\",\r\n                    \"estatusPoliza\": \"Vigente\",\r\n                    \"estatusPagoPoliza\": \"Pagado\",\r\n                    \"fechaInicioVigencia\": \"2021-09-09\",\r\n                    \"fechaFinVigencia\": \"2022-09-09\"\r\n                },\r\n                \"asegurado\": {\r\n                    \"personaFisica\": {\r\n                        \"nombre\": \"Mario Carmelo\",\r\n                        \"apellidoPaterno\": \"Juarez\",\r\n                        \"apellidoMaterno\": \"Lopez\",\r\n                        \"genero\": \"\",\r\n                        \"fechaNacimiento\": \"1980-05-05\",\r\n                        \"paisNacimiento\": \"Mexico\",\r\n                        \"ciudadNacimiento\": \"CDMX\",\r\n                        \"nacionalidad\": \"Mexicana\",\r\n                        \"rfc\": \"HHDYTES23L\",\r\n                        \"curp\": \"HHDYTES23LHDFLLR05\",\r\n                        \"parentesco\": \"\",\r\n                        \"ocupacion\": \"\",\r\n                        \"correoElectronico\": \"\",\r\n                        \"telefono\": \"\",\r\n                        \"observaciones\": \"\",\r\n                        \"datosBancarios\": {\r\n                            \"banco\": \"\",\r\n                            \"tipoCuenta\": \"\",\r\n                            \"codigoBanco\": \"\",\r\n                            \"plaza\": \"\",\r\n                            \"sucursal\": \"\",\r\n                            \"numeroClabeInterbancaria\": \"\",\r\n                            \"numeroCuenta\": \"\"\r\n                        },\r\n                        \"domicilio\": {\r\n                            \"calle\": \"\",\r\n                            \"numeroExt\": \"\",\r\n                            \"numeroInt\": \"\",\r\n                            \"colonia\": \"\",\r\n                            \"codigoPostal\": \"\",\r\n                            \"delegacion\": \"\",\r\n                            \"municipio\": \"\",\r\n                            \"estado\": \"\",\r\n                            \"pais\": \"\"\r\n                        }\r\n                    },\r\n                    \"sucursal\": {\r\n                        \"lineaNegocio\": \"\",\r\n                        \"puntoAtencion\": \"\",\r\n                        \"ubicacion\": \"\",\r\n                        \"crSucursal\": \"\",\r\n                        \"nombreSucursal\": \"\",\r\n                        \"numeroCredito\": \"\"\r\n                    },\r\n                    \"documentos\": [\r\n                        {\r\n                            \"idDocumento\": \"\",\r\n                            \"nombreDocumento\": \"\",\r\n                            \"estatus\": \"\",\r\n                            \"idCliente\": \"\",\r\n                            \"fechaCreacion\": \"2021-05-05\",\r\n                            \"urlDocumento\": \"\"\r\n                        }\r\n                    ]\r\n                },\r\n                \"beneficiarios\": [\r\n                    {\r\n                        \"personaFisica\": {\r\n                            \"nombre\": \"Juan\",\r\n                            \"apellidoPaterno\": \"Perez\",\r\n                            \"apellidoMaterno\": \"Perez\",\r\n                            \"genero\": \"\",\r\n                            \"paisNacimiento\": \"\",\r\n                            \"ciudadNacimiento\": \"\",\r\n                            \"nacionalidad\": \"\",\r\n                            \"rfc\": \"\",\r\n                            \"curp\": \"\",\r\n                            \"parentesco\": \"Hermano\",\r\n                            \"ocupacion\": \"Desarrollador de Sistemas\",\r\n                            \"correoElectronico\": \"juan@perez.com\",\r\n                            \"telefono\": \"5567432918\",\r\n                            \"observaciones\": \"\",\r\n                            \"datosBancarios\": {\r\n                                \"banco\": \"\",\r\n                                \"tipoCuenta\": \"\",\r\n                                \"codigoBanco\": \"\",\r\n                                \"plaza\": \"\",\r\n                                \"sucursal\": \"\",\r\n                                \"numeroClabeInterbancaria\": \"\",\r\n                                \"numeroCuenta\": \"\"\r\n                            },\r\n                            \"domicilio\": {\r\n                                \"calle\": \"\",\r\n                                \"numeroExt\": \"\",\r\n                                \"numeroInt\": \"\",\r\n                                \"colonia\": \"\",\r\n                                \"codigoPostal\": \"\",\r\n                                \"delegacion\": \"\",\r\n                                \"municipio\": \"\",\r\n                                \"estado\": \"\",\r\n                                \"pais\": \"\"\r\n                            }\r\n                        },\r\n                        \"formaPago\": \"\",\r\n                        \"porcentaje\": 100,\r\n                        \"esPreferente\": false,\r\n                        \"documentos\": [\r\n                            {\r\n                                \"idDocumento\": \"\",\r\n                                \"nombreDocumento\": \"\",\r\n                                \"estatus\": \"\",\r\n                                \"idCliente\": \"\",\r\n                                \"fechaCreacion\": \"2021-05-05\",\r\n                                \"urlDocumento\": \"\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ],\r\n                \"datosReclamacion\": {\r\n                    \"fechaReporteSiniestro\": \"2021-05-05\",\r\n                    \"cobertura\": \"fallecimiento\",\r\n                    \"tipoSiniestro\": \"\",\r\n                    \"causaSiniestro\": \"causa del siniestro\",\r\n                    \"fechaPrescripcion\": \"\",\r\n                    \"descripcionAccidenteOEnfermedad\": \"\",\r\n                    \"descripcionEstudiosLaboratorio\": \"\",\r\n                    \"fechaOcurrido\": \"2021-05-05\",\r\n                    \"fechaIngresoModulo\": \"2021-05-05\",\r\n                    \"detalleSiniestro\": {\r\n                        \"causaMotivo\": \"el COVID provoco la muerte\",\r\n                        \"fechaInicioEnfermedad\": \"2021-10-01\",\r\n                        \"lugarFallecimiento\": \"Casa propia\",\r\n                        \"ocupacionAfechaFallecimiento\": \"Tamalero\",\r\n                        \"tratamientoMedicoPrevio\": \"No\",\r\n                        \"padecimiento\": \"COVID\",\r\n                        \"informeMedico\": \"\",\r\n                        \"datoAdicional1\": \"dato adicional 1\",\r\n                        \"datoAdicional2\": \"dato adicional 2\",\r\n                        \"datoAdicional3\": \"dato adicional 3\",\r\n                        \"datoAdicional4\": \"dato adicional 4\",\r\n                        \"datoAdicional5\": \"dato adicional 5\",\r\n                        \"numeroSiniestro\": \"\",\r\n                        \"medico\": [\r\n                            {\r\n                                \"nombre\": \"Ernesto\",\r\n                                \"apellidoPaterno\": \"Martinez\",\r\n                                \"apellidoMaterno\": \"Suarez\",\r\n                                \"genero\": \"\",\r\n                                \"paisNacimiento\": \"\",\r\n                                \"ciudadNacimiento\": \"\",\r\n                                \"nacionalidad\": \"\",\r\n                                \"rfc\": \"\",\r\n                                \"curp\": \"\",\r\n                                \"parentesco\": \"\",\r\n                                \"ocupacion\": \"\",\r\n                                \"correoElectronico\": \"\",\r\n                                \"telefono\": \"\",\r\n                                \"observaciones\": \"\",\r\n                                \"datosBancarios\": {\r\n                                    \"banco\": \"\",\r\n                                    \"tipoCuenta\": \"\",\r\n                                    \"codigoBanco\": \"\",\r\n                                    \"plaza\": \"\",\r\n                                    \"sucursal\": \"\",\r\n                                    \"numeroClabeInterbancaria\": \"\",\r\n                                    \"numeroCuenta\": \"\"\r\n                                },\r\n                                \"domicilio\": {\r\n                                    \"calle\": \"\",\r\n                                    \"numeroExt\": \"\",\r\n                                    \"numeroInt\": \"\",\r\n                                    \"colonia\": \"\",\r\n                                    \"codigoPostal\": \"\",\r\n                                    \"delegacion\": \"\",\r\n                                    \"municipio\": \"\",\r\n                                    \"estado\": \"\",\r\n                                    \"pais\": \"\"\r\n                                }\r\n                            }\r\n                        ]\r\n                    },\r\n                    \"lugarSiniestro\": {\r\n                        \"tipoEntrada\": \"\",\r\n                        \"tipoTramite\": \"\",\r\n                        \"numReclamacion\": \"\",\r\n                        \"coberturaReclamada\": \"\",\r\n                        \"siniestrosAsociadosAsegurado\": \"\",\r\n                        \"domicilio\": {\r\n                            \"calle\": \"\",\r\n                            \"numeroExt\": \"\",\r\n                            \"numeroInt\": \"\",\r\n                            \"colonia\": \"\",\r\n                            \"codigoPostal\": \"\",\r\n                            \"delegacion\": \"\",\r\n                            \"municipio\": \"\",\r\n                            \"estado\": \"\",\r\n                            \"pais\": \"\"\r\n                        }\r\n                    },\r\n                    \"documentos\": [\r\n                        {}\r\n                    ],\r\n                    \"hospitalizacion\": {\r\n                        \"fechaHospitalizacion\": \"2021-10-01\",\r\n                        \"padecimiento\": \"\",\r\n                        \"domicilio\": {\r\n                            \"calle\": \"\",\r\n                            \"numeroExt\": \"\",\r\n                            \"numeroInt\": \"\",\r\n                            \"colonia\": \"\",\r\n                            \"codigoPostal\": \"\",\r\n                            \"delegacion\": \"\",\r\n                            \"municipio\": \"\",\r\n                            \"estado\": \"\",\r\n                            \"pais\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"reclamante\": {\r\n                    \"personaFisica\": {\r\n                        \"nombre\": \"Alfredo\",\r\n                        \"apellidoPaterno\": \"Hernandez\",\r\n                        \"apellidoMaterno\": \"Perez\",\r\n                        \"genero\": \"\",\r\n                        \"paisNacimiento\": \"\",\r\n                        \"ciudadNacimiento\": \"\",\r\n                        \"nacionalidad\": \"\",\r\n                        \"rfc\": \"\",\r\n                        \"curp\": \"\",\r\n                        \"parentesco\": \"hermano\",\r\n                        \"ocupacion\": \"Mantenido\",\r\n                        \"correoElectronico\": \"alfredo@hernandez.com\",\r\n                        \"telefono\": \"5589091112\",\r\n                        \"observaciones\": \"\",\r\n                        \"datosBancarios\": {\r\n                            \"banco\": \"\",\r\n                            \"tipoCuenta\": \"\",\r\n                            \"codigoBanco\": \"\",\r\n                            \"plaza\": \"\",\r\n                            \"sucursal\": \"\",\r\n                            \"numeroClabeInterbancaria\": \"\",\r\n                            \"numeroCuenta\": \"\"\r\n                        },\r\n                        \"domicilio\": {\r\n                            \"calle\": \"\",\r\n                            \"numeroExt\": \"\",\r\n                            \"numeroInt\": \"\",\r\n                            \"colonia\": \"\",\r\n                            \"codigoPostal\": \"\",\r\n                            \"delegacion\": \"\",\r\n                            \"municipio\": \"\",\r\n                            \"estado\": \"\",\r\n                            \"pais\": \"\"\r\n                        }\r\n                    },\r\n                    \"documentos\": [\r\n                        {\r\n                            \"idDocumento\": \"\",\r\n                            \"nombreDocumento\": \"\",\r\n                            \"estatus\": \"\",\r\n                            \"idCliente\": \"\",\r\n                            \"fechaCreacion\": \"2021-05-05\",\r\n                            \"urlDocumento\": \"\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/creaInstancia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"creaInstancia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generaTokenBPM",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/generarToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"generarToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca Tareas por idCliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/tareasCliente/87324234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"tareasCliente",
+						"87324234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finaliza tarea por tarea ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/finalizaTarea/420",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"finalizaTarea",
+						"420"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega Datos a la tarea Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/ventanilla/addData/420/%7B%22solicitud%22%3A%7B%22asegurado%22%3A%7B%22personaFisica%22%3A%7B%22nombre%22%3A%22chisco222%22%7D%7D%7D%7D",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"ventanilla",
+						"addData",
+						"420",
+						"%7B%22solicitud%22%3A%7B%22asegurado%22%3A%7B%22personaFisica%22%3A%7B%22nombre%22%3A%22chisco222%22%7D%7D%7D%7D"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
