@@ -1,10 +1,13 @@
 package mx.com.ventanilla.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.context.annotation.Value;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.RxHttpClient;
-import io.micronaut.http.client.annotation.Client;
 import java.net.URI;
+import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -42,7 +45,7 @@ public class VentanillaServiceImpl implements VentanillaService {
 
     @Value("${bpm.finish-task}")
     private String urlFinishTask;
-
+    
     @Value("${bpm.user}")
     private String user;
 
@@ -64,7 +67,7 @@ public class VentanillaServiceImpl implements VentanillaService {
                 return respuesta;
             }
         } catch (Exception s) {
-            throw new ServiceException("Error al obtener Token");
+            throw new ServiceException("Error al obtener Token", s);
         }
         return null;
     }
@@ -79,16 +82,18 @@ public class VentanillaServiceImpl implements VentanillaService {
                 String url = host + urlInstance + Constantes.PARAM_MODEL + Constantes.PARAM_CONTAINER + Constantes.PARAM_OPTIONAL;
                 log.info("Llamado de Instancia : {}", url);
                 String resultado = httpClient.toBlocking().retrieve(HttpRequest.POST(URI.create(url), input)
-                        .basicAuth(user,pass)
-                        .header(Constantes.HEADER_TOKEN,result.getCsrf_token()));
-                log.info("Exito: {} ", resultado);
-                respuesta.setDatos(resultado);
-                respuesta.setMensaje(Constantes.EXITO);
-                respuesta.setResultado(true);
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
+                if (!Objects.isNull(resultado) && !resultado.isEmpty()) {
+                    log.info("Exito: {} ", resultado);
+                    respuesta.setDatos(resultado);
+                    respuesta.setMensaje(Constantes.EXITO);
+                    respuesta.setResultado(true);
+                }
             }
             return respuesta;
-        }catch(Exception e){
-            throw new ServiceException("Error al Crear Instancia");
+        } catch (Exception e) {
+            throw new ServiceException("Error al Crear Instancia", e);
         }
     }
 
@@ -101,18 +106,17 @@ public class VentanillaServiceImpl implements VentanillaService {
                 log.info("Obtiene el token: {}", result.getCsrf_token());
                 String url = host + urlInstanceCliente + idCliente + Constantes.PARAMS_CLIENT;
                 log.info("Llamado de Instancia : {}", url);
-                String resultado = httpClient.toBlocking().retrieve(HttpRequest.POST(URI.create(url),"")
-                        .basicAuth(user,pass)
-                        .header(Constantes.HEADER_TOKEN,result.getCsrf_token()));
+                String resultado = httpClient.toBlocking().retrieve(HttpRequest.POST(URI.create(url), "")
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
                 log.info("Exito: {} ", resultado);
                 respuesta.setDatos(resultado);
                 respuesta.setMensaje(Constantes.EXITO);
                 respuesta.setResultado(true);
             }
             return respuesta;
-        }catch(Exception e){
-            //e.printStackTrace();
-            throw new ServiceException("Error al obtener tareas del cliente");
+        } catch (Exception e) {
+            throw new ServiceException("Error al obtener tareas del cliente", e);
         }
     }
 
@@ -126,19 +130,17 @@ public class VentanillaServiceImpl implements VentanillaService {
                 String url = host + urlInstanceTasks + instanciaId + Constantes.PARAMS_TASKS;
                 log.info("Llamado de tareas por instancia : {}", url);
                 String resultado = httpClient.toBlocking().retrieve(HttpRequest.GET(URI.create(url))
-                        .basicAuth(user,pass)
-                        .header(Constantes.HEADER_TOKEN,result.getCsrf_token()));
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
                 log.info("Exito: {} ", resultado);
                 respuesta.setDatos(resultado);
                 respuesta.setMensaje(Constantes.EXITO);
                 respuesta.setResultado(true);
             }
             return respuesta;
-        }catch(Exception e){
-            //e.printStackTrace();
-            throw new ServiceException("Error al obtener tareas de la instancia");
+        } catch (Exception e) {
+            throw new ServiceException("Error al obtener tareas de la instancia", e);
         }
-        //return null;
     }
 
     @Override
@@ -148,22 +150,24 @@ public class VentanillaServiceImpl implements VentanillaService {
             RespuestaToken result = (RespuestaToken) respuesta.getDatos();
             if (!Objects.isNull(result)) {
                 log.info("Obtiene el token: {}", result.getCsrf_token());
-                String url = host + urlFinishTask + tareaId + Constantes.PARAMS_ADD + params;
-                log.info("Llamado de finalizar tarea : {}", url);
-                String resultado = httpClient.toBlocking().retrieve(HttpRequest.PUT(URI.create(url),"")
-                        .basicAuth(user,pass)
-                        .header(Constantes.HEADER_TOKEN,result.getCsrf_token()));
-                log.info("Exito: {} ", resultado);
-                respuesta.setDatos(resultado);
-                respuesta.setMensaje(Constantes.EXITO);
-                respuesta.setResultado(true);
+                String url = host + urlFinishTask + tareaId + Constantes.PARAMS_ADD + Utilidades.encodingParams(params);
+                log.info("Llamado de set Data tarea : {}", url);
+                log.info("URL a ejecutar: {}", URI.create(url));
+                String resultado = httpClient.toBlocking().retrieve(HttpRequest.PUT(URI.create(url), "") 
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
+                
+                if (!Objects.isNull(resultado) && !resultado.isEmpty()) {
+                    log.info("Exito: {} ", resultado);
+                    respuesta.setDatos(resultado);
+                    respuesta.setMensaje(Constantes.EXITO);
+                    respuesta.setResultado(true);
+                }
             }
             return respuesta;
-        }catch(Exception e){
-            //e.printStackTrace();
-            throw new ServiceException("Error al obtener tareas de la instancia");
+        } catch (Exception e) {
+            throw new ServiceException("Error al settear datos a la instancia", e);
         }
-        //return null;
     }
 
     @Override
@@ -176,18 +180,42 @@ public class VentanillaServiceImpl implements VentanillaService {
                 String url = host + urlFinishTask + tareaId + Constantes.PARAMS_FINISH_TASK + result.getCsrf_token();
                 log.info("Llamado de finalizar tarea : {}", url);
                 String resultado = httpClient.toBlocking().retrieve(HttpRequest.PUT(URI.create(url),"")
-                        .basicAuth(user,pass)
-                        .header(Constantes.HEADER_TOKEN,result.getCsrf_token()));
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
                 log.info("Exito: {} ", resultado);
                 respuesta.setDatos(resultado);
                 respuesta.setMensaje(Constantes.EXITO);
                 respuesta.setResultado(true);
             }
             return respuesta;
-        }catch(Exception e){
-            //e.printStackTrace();
-            throw new ServiceException("Error al finalizar la tarea");
+        } catch (Exception e) {
+            throw new ServiceException("Error al finalizar la tarea", e);
         }
     }
+    
+    @Override
+    public RespuestaGenerica obtenInfoTarea(Long tareaId) throws ServiceException {
+        try {
+            RespuestaGenerica respuesta = obtenToken();
+            RespuestaToken result = (RespuestaToken) respuesta.getDatos();
+            if (!Objects.isNull(result)) {
+                log.info("Obtiene el token: {}", result.getCsrf_token());
+                String url = host + urlFinishTask + tareaId + Constantes.PARAM_DATA;
+                log.info("Llamado de obtener datos tarea : {}", url);
+                String resultado = httpClient.toBlocking().retrieve(HttpRequest.GET(URI.create(url))
+                        .basicAuth(user, pass)
+                        .header(Constantes.HEADER_TOKEN, result.getCsrf_token()));
+                log.info("Exito: {} ", resultado);
+                respuesta.setDatos(resultado);
+                respuesta.setMensaje(Constantes.EXITO);
+                respuesta.setResultado(true);
+            }
+            return respuesta;
+        } catch (Exception e) {
+            throw new ServiceException("Error al obtener data", e);
+        }
+    }
+    
+    
 
 }

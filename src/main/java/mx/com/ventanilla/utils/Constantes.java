@@ -22,5 +22,6 @@ public class Constantes {
     public static final String PARAMS_TASKS = "?parts=header%7Cdata";
     public static final String PARAMS_FINISH_TASK = "?action=finish&parts=all&BPMCSRFToken=";
     public static final String PARAMS_ADD = "?action=setData&params=";
+    public static final String PARAM_DATA = "?parts=data";
     
 }

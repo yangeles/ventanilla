@@ -16,4 +16,5 @@ public interface VentanillaService {
     RespuestaGenerica obtenTareasInstancia(Long instanciaId) throws ServiceException;
     RespuestaGenerica addData(Long tareaId, String params) throws ServiceException;
     RespuestaGenerica finalizaTarea(Long tareaId) throws ServiceException;
+    RespuestaGenerica obtenInfoTarea(Long tareaId) throws ServiceException;
 }

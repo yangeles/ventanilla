@@ -76,7 +76,7 @@ public class VentanillaController {
 
     @Operation(summary = "${ventanilla.controller}",
             description = "${ventanilla.controller}",
-            operationId = "ventanilla.addFata")
+            operationId = "ventanilla.addData")
     @ApiResponse(content = @Content(mediaType = MediaType.APPLICATION_JSON),responseCode = "200", description = "Respuesta correcta")
     @Tag(name = "Ventanilla - Agrega datos a la tarea")
     @Put(value = "/addData/{tareaId}/{params}", consumes = MediaType.APPLICATION_JSON, processes = MediaType.APPLICATION_JSON)
@@ -101,4 +101,19 @@ public class VentanillaController {
             return HttpResponse.badRequest(Utilidades.respuestaError());
         }
     }
+    
+    @Operation(summary = "${ventanilla.controller}",
+            description = "${ventanilla.controller}",
+            operationId = "ventanilla.obtenInfoTarea")
+    @ApiResponse(content = @Content(mediaType = MediaType.APPLICATION_JSON),responseCode = "200", description = "Respuesta correcta")
+    @Tag(name = "Ventanilla - Obtener Info Tarea")
+    @Get(value = "/obtenInfoTarea/{tareaId}", consumes = MediaType.APPLICATION_JSON, processes = MediaType.APPLICATION_JSON)
+    public HttpResponse<RespuestaGenerica> obtenInfoTarea(@PathVariable Long tareaId) {
+        try {
+            return HttpResponse.ok(service.obtenInfoTarea(tareaId));
+        }catch (Exception e){
+            return HttpResponse.badRequest(Utilidades.respuestaError());
+        }
+    }
+    
 }

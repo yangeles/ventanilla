@@ -25,11 +25,11 @@ public class Json {
 
     public static <A> A fromJson(JsonNode node, Class<A> clas) throws JsonProcessingException {
         return objectMapper.treeToValue(node,clas);
-    }
+    }*/
 
     public static String stringify(JsonNode node) throws JsonProcessingException {
         ObjectWriter objectWriter = objectMapper.writer();
         return objectWriter.writeValueAsString(node);
-    }*/
+    }
 
 }

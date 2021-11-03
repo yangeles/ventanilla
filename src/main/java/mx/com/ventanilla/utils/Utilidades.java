@@ -21,10 +21,10 @@ public class Utilidades {
     public static String encodingParams(String str){
          if(!Objects.isNull(str) && !str.isEmpty()){
              if(str.contains("{") || str.contains(":") || str.contains("}") || str.contains("\"")){
-                str = str.replaceAll("{","%7B");
-                str = str.replaceAll(":", "%3A");
-                 str = str.replaceAll("}", "%7D");
-                 str = str.replaceAll("\"", "%22");
+                str = str.replace("{","%7B");
+                str = str.replace(":", "%3A");
+                 str = str.replace("}", "%7D");
+                 str = str.replace("\"", "%22");
              }
          }
          return str;
