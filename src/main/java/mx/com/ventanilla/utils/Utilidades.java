@@ -18,16 +18,17 @@ public class Utilidades {
         return response;
     }
 
-    public static String encodingParams(String str){
-         if(!Objects.isNull(str) && !str.isEmpty()){
-             if(str.contains("{") || str.contains(":") || str.contains("}") || str.contains("\"")){
-                str = str.replace("{","%7B");
+    public static String encodingParams(String str) {
+        if (!Objects.isNull(str) && !str.isEmpty()) {
+            if (str.contains("{") || str.contains(":") || str.contains("}") || str.contains("\"") || str.contains(",")) {
+                str = str.replace("{", "%7B");
                 str = str.replace(":", "%3A");
-                 str = str.replace("}", "%7D");
-                 str = str.replace("\"", "%22");
-             }
-         }
-         return str;
+                str = str.replace("}", "%7D");
+                str = str.replace("\"", "%22");
+                str = str.replace(",", "%2C");
+            }
+        }
+        return str;
     }
     
 }
